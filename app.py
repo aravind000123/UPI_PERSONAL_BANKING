@@ -85,6 +85,7 @@ def createbankaccount():
         conn.close()
 
         return redirect("/main_screen")
+    return render_template("create_bank_account.html")
 
 @app.route('/login',methods=["GET","POST"])
 def login():
