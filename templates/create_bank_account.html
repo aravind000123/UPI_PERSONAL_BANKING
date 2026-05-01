@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up</title>
+<style>
+    /* Full Page Styling */
+    body {
+        background: linear-gradient(135deg, #101010 0%,rgb(48, 43, 43), #ffffff 100%);
+        color: #ffffff;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        display: flex; /* Centers the container */
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    /* Glassmorphism Container */
+    .container {
+        width: 450px;
+        /* background: linear-gradient(90deg, grey,grey,black,black); */
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 10px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Table & Layout */
+    table {
+        width: 100%;
+        padding: 30px;
+        border: none; /* Removing the default border you had */
+    }
+
+    td {
+        padding: 10px 5px;
+    }
+
+    label {
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    /* Input Fields */
+    input {
+        width: 100%;
+        padding: 10px;
+        /* background: rgba(255, 255, 255, 0.08); */
+        border: 1px solid gray;
+        border-radius: 5px;
+        color: white;
+        outline: none;
+        transition: all 0.3s ease;
+        background: linear-gradient(90deg, black,black,grey,grey);
+    }
+
+    input:focus {
+        border-color: #00d2ff;
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 0 8px rgba(0, 210, 255, 0.8);
+    }
+
+    /* Submit Button */
+    button {
+        width: 100%; /* Overriding the 90% for a cleaner look */
+        color: white;
+        background: linear-gradient(45deg, #28a745, #1e7e34); 
+        border: none;
+        border-radius: 8px;
+        padding: 14px;
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+        background: linear-gradient(45deg, #2dbd4f, #218838);
+    }
+
+    button:active {
+        transform: translateY(0);
+    }
+
+    /* Placeholder color */
+    ::placeholder {
+        color: rgba(255, 255, 255, 0.9);
+    }
+    p{
+        text-align: center;
+        font-size: 18px;
+        color: #ffffff;
+    }
+    @media (max-width: 500px){
+        .container{
+            width:94%;
+            margin-left: 3%;
+            margin-right: 3%;
+        }
+        p{
+            font-size: 16px;
+        }
+    }
+</style>
+    </head>
+    <body> 
+        <div class="container">
+            <form method="POST" action="/">
+                <table>
+                    <tr><td colspan="2"><h2>ENTER YOUR DETAILS FOR BANK ACCOUNT</h2></td></tr>
+                    <tr>
+                        <td><label>Enter Full Name</label></td>
+                        <td><input type="text" name="user_name" placeholder="Full Name" required></td>
+                    </tr>
+                    <tr>
+                        <td><label>Enter email</label></td>
+                        <td><input type="email" name="email" placeholder="email" required></td>
+                    </tr>
+                    <tr>
+                        <td><label>Account Password</label></td>
+                        <td><input id='password' type="password" name="password" placeholder="password" required></td>
+                    </tr>
+                    <tr>
+                        <td><label>Account confirm-Password</label></td>
+                        <td><input id="confirmpassword" type="password" name="confirm-password" placeholder="confirm-password" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button type="submit">SUBMIT</button></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><p>Already have an account? <a href="/login" style="color: #00d2ff;">Login here</a></p></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <script>
+            document.querySelector('form').onsubmit=function(){
+                let pass1=document.getElementById("password").value;
+                let pass2=document.getElementById("confirmpassword").value;
+                if(pass1!=pass2){
+                    return false;
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Main Screen</title>
+        <style>
+            body, html {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                background-color: #121212;
+                overflow: hidden;
+                color: white;
+            }
+            marquee{
+                font-size: 30px;
+                color: white;
+            }
+            .details{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 20%;
+                position: relative;
+                width: 100%;
+            }
+
+            .details h2{
+                margin: 0 20px;
+                padding: 10px 20px;
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(10px);
+                border-radius: 15px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            }
+            @media (max-width: 500px) {
+                .details h2 {
+                    font-size: 16px;
+                    margin: 0 10px;
+                    padding: 8px 15px;
+                }
+                marquee {
+                    font-size: 20px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="details">
+                <div class="user_name"><h2>{{ user_name }}</h2></div>
+                <div class="user_id"><h2>{{ user_id }}</h2></div>
+                <!-- <div class="balance"><h2>{{ balance }}</h2></div> -->
+            </div>
+                <h1><marquee direction="left">You can get Loan Through online banking</marquee></h1>
+        </div>
+    </body>

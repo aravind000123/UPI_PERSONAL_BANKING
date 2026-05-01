@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions</title>
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto; 
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        th, td {
+            border-bottom: 1px solid black;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        @media (max-width: 500px) {
+            th, td {
+                font-size: 12px;
+                padding: 6px;
+            }
+        }
+        th {
+            position: sticky;
+            top: 0;
+            background: #eb8f16; /* same as background */
+            z-index: 1;
+
+        }
+    </style>
+    </head>
+
+    <body>
+
+    <div class="container">
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Receiver</th>
+                    <th>Receiver ID</th>
+                    <th>Sender</th>
+                    <th>Sender ID</th>
+                    <th>Prev Balance</th>
+                    <th>Amount</th>
+                    <th>Balance</th>
+                </tr>
+
+                {% for x in transactions %}
+                    {% if x[2] == sender_user_id %}
+                        <tr style="background-color: rgba(99, 235, 78, 0.769);">
+
+                                <!-- receiver_name,
+                                receiver_id,
+                                sender_name,
+                                sender_id,
+                                previous_balance_receiver,
+                                previous_balance_sender,
+                                send_money,
+                                receiver_balance,
+                                sender_balance -->
+                                
+                            <td>{{x[0]}}</td>
+                            <td>{{x[1]}}</td>
+                            <td>{{x[2]}}</td>
+                            <td>{{x[3]}}</td>
+                            <td>{{x[4]}}</td>
+                            <td>{{x[5]}}</td>
+                            <td>{{x[7]}}</td>
+                            <td>{{x[8]}}</td>
+                        </tr>
+                    {% else %}
+                        <tr style="background-color: rgba(244, 70, 67, 0.703);">
+                            <td>{{x[0]}}</td>
+                            <td>{{x[1]}}</td>
+                            <td>{{x[2]}}</td>
+                            <td>{{x[3]}}</td>
+                            <td>{{x[4]}}</td>
+                            <td>{{x[6]}}</td>
+                            <td>{{x[7]}}</td>
+                            <td>{{x[9]}}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    </body>
+</html>

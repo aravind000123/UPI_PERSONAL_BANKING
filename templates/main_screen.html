@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Main Screen</title>
+
+<style>
+    
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #121212;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+}
+
+/* NAV BAR */
+.nav-bar {
+    position: relative; /* IMPORTANT for indicator */
+    width: 100%;
+    height: 10%;
+    background-color: green;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 3%;
+    padding: 5px;
+    box-sizing: border-box;
+
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.nav-bar button {
+    flex-shrink: 1;
+    width: 23%;
+    height: 100%;
+    min-width: 0;
+
+    padding: 8px 5px;
+    font-size: 20px;
+    color: white;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    position: relative;
+    z-index: 2; /* above indicator */
+    cursor: pointer;
+}
+
+.indicator {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    height: calc(100% - 10px);
+    width: 0;
+    background: rgb(241, 161, 40);
+    border-radius: 10px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.screen {
+    width: 100%;
+    flex-grow: 1;
+    border: none;
+    /* background-color: #000; */
+}
+
+@media (max-width: 500px) {
+    .nav-bar button {
+        font-size: 12px;
+        padding: 0px 0px;
+    }
+}
+.menu_list{
+    width:30%;
+    height: 100%;
+    background-color: white;
+    z-index:2 ;
+}
+iframe{
+    background-color: white;
+}
+.logout{
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 900;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="nav-bar">
+        <div class="indicator"></div>
+
+        <button class="home" onclick="setpage(this,'home_page')">HOME</button>
+        <button onclick="setpage(this,'deposite_page')">DEPOSITE</button>
+        <button onclick="setpage(this,'transfer_page')">TRANSFER MONEY</button>
+        <button onclick="setpage(this,'check_transactions')">CHECK TRANSACTIONS</button>
+        <button onclick="setpage(this,'check_balance')">CHECK BALANCE</button>
+        <button style="background-color: red;" class="logout" onclick="window.top.location.href='/login'">Logout</button>
+    </div>
+
+    <iframe class="screen" src="" ></iframe>
+</div>
+
+<script>
+    setpage(document.querySelector(".home"), "home_page");
+    function setpage(position, page) {
+        document.querySelector(".screen").src = "/" + page;
+
+        const indicator = document.querySelector(".indicator");
+
+        indicator.style.width = position.offsetWidth + "px";
+        indicator.style.left = position.offsetLeft + "px";
+    }
+</script>
+
+</body>
+</html>

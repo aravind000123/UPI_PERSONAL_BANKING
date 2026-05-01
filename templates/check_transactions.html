@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions</title>
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+        .button-container {
+            margin-bottom: 20px;
+            width:15%;
+            position: absolute;
+            z-index: 2;
+            justify-content: center;
+            align-items: center;
+            left: 3%;
+            top:5%;
+        }
+        button {
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: black;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:active {
+            background-color: #004080;
+            color:greenyellow
+        }
+        iframe {
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+        @media (max-width:500px) {
+            button {
+                font-size: 12px;
+                padding: 8px;
+            }
+            .button-container{
+                width: 30%;
+                left: 2%;
+                top: 0%;
+            }
+        }
+        #subFrame {
+            height: 60vh;
+            width: 100%;
+            height: 80vh;
+            border:none;
+        }
+        select{
+            font-size: 16px;
+            padding: 5px;
+            border-radius: 5px;
+            border:2px solid rgb(0, 0, 0);
+        }
+         @media (max-width:500px) {
+            select {
+                font-size: 12px;
+                padding: 5px;
+            }
+        }
+        .subheading {
+            text-align: center;
+            width: 100%;
+            /* border:2px solid black; */
+            left: 0;
+        }
+    </style>
+    </head>
+
+    <body>
+
+    <div class="container">
+        <div class="button-container">
+            <select onchange="go_to_path(this.value)">
+                <option value="" disabled >Select Option</option>
+                <option value="all_transactions" selected>All Transactions</option>
+                <option value="sent_transactions">Sent Transactions</option>
+                <option value="received_transactions">Received Transactions</option>
+            </select>
+        </div>
+        <div class="subheading"><h1></h1></div>
+        <iframe id="subFrame" src=""></iframe>
+    </div>
+    <script>
+        
+        go_to_path("all_transactions");
+        function go_to_path(page){
+            document.getElementById("subFrame").src = "/" + page;
+
+            if(page=="all_transactions"){
+                document.querySelector(".subheading h1").innerText = "All Transactions History";
+            }
+            else if(page=="sent_transactions"){
+                document.querySelector(".subheading h1").innerText = "Sent Transactions History";
+            }
+            else if(page=="received_transactions"){
+                document.querySelector(".subheading h1").innerText = "Received Transactions History";
+            }
+        }
+    </script>
+    </body>
+</html>

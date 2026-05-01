@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Screen</title>
+
+    <style>
+    body {
+        margin: 0;
+        padding: 20px;
+        background: linear-gradient(135deg, #1e1e2f, #121212);
+        font-family: 'Segoe UI', sans-serif;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        box-sizing: border-box;
+    }
+
+    /* Container */
+    .container {
+        width: 100%;
+        max-width: 500px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Form */
+    form {
+        background: rgba(255,255,255,0.05);
+        backdrop-filter: blur(10px);
+        padding: 25px;
+        border-radius: 15px;
+        border: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+
+    /* Title */
+    h2 {
+        text-align: center;
+        color: #00d2ff;
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+
+    /* Form rows */
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+
+    /* Labels */
+    label {
+        font-size: 14px;
+        margin-bottom: 5px;
+        color: #bbb;
+    }
+
+    /* Inputs */
+    input {
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid rgba(255,255,255,0.2);
+        background: rgba(255,255,255,0.08);
+        color: #fff;
+        outline: none;
+    }
+
+    input:focus {
+        border-color: #00d2ff;
+    }
+
+    /* Button */
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #28a745;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #218838;
+    }
+
+    /* Result box */
+    .user-details {
+        background: rgba(0,210,255,0.1);
+        border-left: 4px solid #00d2ff;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 14px;
+        line-height: 1.5;
+        word-wrap: break-word;
+    }
+
+    /* Scroll if too long */
+    .main-user-details {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+        h2 { font-size: 18px; }
+        label { font-size: 13px; }
+        .user-details { font-size: 12px; }
+    }
+    </style>
+    </head>
+
+    <body>
+
+    <div class="container">
+
+    <form action="/transfer_page" method="POST">
+        <h2>TRANSFER MONEY</h2>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" required>
+        </div>
+
+        <div class="form-group">
+            <label>Amount</label>
+            <input type="number" name="amount" required>
+        </div>
+
+        <div class="form-group">
+            <label>Receiver Email</label>
+            <input type="email" name="email_receiver_by_sender" required>
+        </div>
+
+        <button type="submit">SUBMIT</button>
+    </form>
+
+        {%if message%}
+            <div class="main-user-details">
+                <h2 class="user-details">User name : {{username}} , Email : {{email}} , User ID : {{user_id}}</h2>
+                <h2 class="user-details">Amount transferred : {{money_transferred}} , Current money : {{current_money_sender}}</h2>
+                <h2 class="user-details">Receiver name : {{username_receiver}} , Receiver email : {{email_receiver}} , Receiver ID : {{user_id_receiver}}</h2>
+                <h2 class="user-details">Current money of receiver : {{current_money_receiver}}</h2>
+            </div>
+        {% endif %}
+        {% if show_error %}
+            <h2 class="user-details">{{error}}</h2>                
+        {% endif %}
+
+    </div>
+
+    </body>
+</html>

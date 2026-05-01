@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    width: 90%;
+    max-width: 400px;
+    height: 75%;
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.image {
+    flex: 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 40px;
+    padding-top: 10px;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    /* border:2px solid white; */
+}
+
+.balance {
+    flex: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.244);
+    color:black;
+    /* border:2px solid white; */
+    padding:15px ;
+}
+
+.balance h1 {
+    margin: 0;
+    font-size: 48px;
+}
+
+@media (max-width: 480px) {
+    .box {
+        height: 70%;
+    }
+    .balance h1 {
+        font-size: 22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="box">
+        <div class="image">
+            <img src="{{ url_for('static', filename='Images/rupee-coin-3d-icon-free-png.png') }}">
+        </div>
+        <div class="balance">
+            <h1>{{balance}}</h1>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
