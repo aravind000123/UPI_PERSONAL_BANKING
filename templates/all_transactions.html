@@ -72,8 +72,8 @@
                     <th>Sender</th>
                     <th>Sender ID</th>
                     <th>Prev Balance</th>
-                    <th>Amount</th>
-                    <th>Balance</th>
+                    <th>CR/DR</th>
+                    <th>Final Balance</th>
                 </tr>
 
                 {% for x in transactions %}
@@ -96,7 +96,7 @@
                             <td>{{x[3]}}</td>
                             <td>{{x[4]}}</td>
                             <td>{{x[5]}}</td>
-                            <td>{{x[7]}}</td>
+                            <td><label>+ </label>{{x[7]}}</td>
                             <td>{{x[8]}}</td>
                         </tr>
                     {% else %}
@@ -107,7 +107,7 @@
                             <td>{{x[3]}}</td>
                             <td>{{x[4]}}</td>
                             <td>{{x[6]}}</td>
-                            <td>{{x[7]}}</td>
+                            <td><label>- </label>{{x[7]}}</td>
                             <td>{{x[9]}}</td>
                         </tr>
                     {% endif %}
