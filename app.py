@@ -134,10 +134,6 @@ def home_page():
     
     return render_template("home_page.html", user_name=session['user_details'].get('user_name'), user_id=session['user_details'].get('user_id'), balance=session['user_details'].get('balance'))
 
-@app.route('/deposite_page')
-def deposite_page():
-    return render_template("deposite_page.html",message=False)
-
 @app.route('/transfer_page',methods=["GET","POST"])
 def transfer_page():
     if request.method=="GET":
@@ -199,8 +195,10 @@ def transfer_page():
 
         return render_template("transfer_page.html",message=True,show_error=False,username=username,email=email,user_id=userid,money_transferred=amount,current_money_sender=final_amount,username_receiver=username_receiver,email_receiver=email_receiver,user_id_receiver=userid_receiver,current_money_receiver=final_amount_by_receiver)
 
-@app.route('/deposite',methods=["GET","POST"])
-def deposite():
+@app.route('/deposit',methods=["GET","POST"])
+def deposit():
+    if request.method=="GET":
+        return render_template("deposit_page.html",message=False,show_error=False)
     if request.method=="POST":
         email = request.form["email"]
         password=request.form["password"]
@@ -228,16 +226,17 @@ def deposite():
 
                 session['user_details']['balance'] = final_amount
                 session.modified = True
+
             else:
-                return render_template("deposite_page.html",message=False,show_error=True,error="This is not your account, Please login with your account to deposite money , If you want to deposite money to other account please go to transfer page")
+                return render_template("deposit_page.html",message=False,show_error=True,error="This is not your account, Please login with your account to deposite money , If you want to deposite money to other account please go to transfer page")
         else:
-            return render_template("deposite_page.html",message=False,show_error=True,error="Invalid email or password")
+            return render_template("deposit_page.html",message=False,show_error=True,error="Invalid email or password")
 
         conn.commit()
         conn.close()
 
         return render_template(
-            "deposite_page.html",
+            "deposit_page.html",
             message=True,
             username=username,
             email=email,
@@ -318,4 +317,5 @@ def check_balance():
 
 
 if __name__=="__main__":
-    app.run(host='0.0.0.0',port=int(os.environ.get("PORT",5000)))
+    # app.run(host='0.0.0.0',port=int(os.environ.get("PORT",5000)))
+    app.run(debug=True)
